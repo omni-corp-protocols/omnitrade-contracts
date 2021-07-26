@@ -28,17 +28,16 @@ contract EursToUsdAssimilator is IAssimilator {
 
     using SafeMath for uint256;
 
-    IERC20 private constant usdc = IERC20(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48);
+    IERC20 private constant usdc = IERC20(0x209d032472401Fadc06156518d8AB5b1b946C53a);
 
     IOracle private constant oracle = IOracle(0xb49f677943BC038e9857d61E7d053CaA2C1734C1);
-    IERC20 private constant eurs = IERC20(0xdB25f211AB05b1c97D595516F45794528a807ad8);
+    IERC20 private constant eurs = IERC20(0x97e9fde3DC18005B887D1fe1ecf835cfe6CB8Bd4);
 
     // solhint-disable-next-line
     constructor() {}
 
     function getRate() public view override returns (uint256) {
-        (, int256 price, , , ) = oracle.latestRoundData();
-        return uint256(price);
+        return uint256(119113000);
     }
 
     // takes raw eurs amount, transfers it in, calculates corresponding numeraire amount and returns it

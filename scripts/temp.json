@@ -1,0 +1,14 @@
+{
+    "libraries": {
+        "Curves": "0xdb36E9C46226df8A76fB31817c56D7aE00ABce94",
+        "Orchestrator": "0x46Fcb3D3f391B37FFa5eD422f271df1F0bafEC7e",
+        "ProportionalLiquidity": "0x5f7776FA41B527c40c9ad58Fde1299071A893f84",
+        "Swaps": "0x14C565Fc1DCAf4D099AA08dbf16f9f957181d284",
+        "ViewLiquidity": "0x311243Dcad1BFf94559C3fDD08E3aba1FA200FFf"
+    },
+    "curveFactory": "0xd6f7BdA9161fA9FECC4606B79883F346927A1C48",
+    "router": "0x193FCf39B26DC289eFd86b57b50C79A8aA435939",
+    "usdcToUsdAssimilator": "0x1300BCc52515CD46A4703894c0A130cFc35f0d62",
+    "eursToUsdAssimilator": "0xC0F3c955F58538E46333164959984E77b729487F",
+    "euroCurve": "0xE53abD789Fec5877369688997fD20E44bB0eabA6"
+}

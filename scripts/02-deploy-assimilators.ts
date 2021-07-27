@@ -13,45 +13,23 @@ async function main() {
   console.log(chalk.blue(`>>>>>>>>>>>> Network: ${(hre.network.config as any).url} <<<<<<<<<<<<`));
   console.log(chalk.blue(`>>>>>>>>>>>> Deployer: ${user.address} <<<<<<<<<<<<`));
 
-  const CadcToUsdAssimilator = await ethers.getContractFactory("CadcToUsdAssimilator");
-  const UsdcToUsdAssimilator = await ethers.getContractFactory("UsdcToUsdAssimilator");
-  const EursToUsdAssimilator = await ethers.getContractFactory("EursToUsdAssimilator");
-  const XsgdToUsdAssimilator = await ethers.getContractFactory("XsgdToUsdAssimilator");
+  const UsdtToUsdAssimilator = await ethers.getContractFactory("UsdtToUsdAssimilator");
+  const BusdToUsdAssimilator = await ethers.getContractFactory("BusdToUsdAssimilator");
 
-  const cadcToUsdAssimilator = await deployContract({
-    name: "CadcToUsdAssimilator",
+  const usdtToUsdAssimilator = await deployContract({
+    name: "UsdtToUsdAssimilator",
     deployer: user,
-    factory: CadcToUsdAssimilator,
+    factory: UsdtToUsdAssimilator,
     args: [],
     opts: {
       gasLimit: 2000000,
     },
   });
 
-  const usdcToUsdAssimilator = await deployContract({
-    name: "UsdcToUsdAssimilator",
+  const busdToUsdAssimilator = await deployContract({
+    name: "BusdToUsdAssimilator",
     deployer: user,
-    factory: UsdcToUsdAssimilator,
-    args: [],
-    opts: {
-      gasLimit: 2000000,
-    },
-  });
-
-  const eursToUsdAssimilator = await deployContract({
-    name: "EursToUsdAssimilator",
-    deployer: user,
-    factory: EursToUsdAssimilator,
-    args: [],
-    opts: {
-      gasLimit: 2000000,
-    },
-  });
-
-  const xsgdToUsdAssimilator = await deployContract({
-    name: "XsgdToUsdAssimilator",
-    deployer: user,
-    factory: XsgdToUsdAssimilator,
+    factory: BusdToUsdAssimilator,
     args: [],
     opts: {
       gasLimit: 2000000,
@@ -59,14 +37,14 @@ async function main() {
   });
 
   const output = {
-    cadcToUsdAssimilator: cadcToUsdAssimilator.address,
-    usdcToUsdAssimilator: usdcToUsdAssimilator.address,
-    eursToUsdAssimilator: eursToUsdAssimilator.address,
-    xsgdToUsdAssimilator: xsgdToUsdAssimilator.address,
+    usdtToUsdAssimilator: usdtToUsdAssimilator.address,
+    busdToUsdAssimilator: busdToUsdAssimilator.address,
   };
 
-  const outputPath = path.join(__dirname, new Date().getTime().toString() + `_assimilators_deployed.json`);
-  fs.writeFileSync(outputPath, JSON.stringify(output, null, 4));
+  const network = await hre.ethers.provider.getNetwork();
+  const outputDir = path.join(__dirname, `${network.chainId}`);
+  if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir);
+  fs.writeFileSync(path.join(outputDir, `assimilators_deployed.json`), JSON.stringify(output, null, 4));
 }
 
 // We recommend this pattern to be able to use async/await everywhere

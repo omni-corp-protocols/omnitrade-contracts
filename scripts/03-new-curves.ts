@@ -1,21 +1,21 @@
 import hre from "hardhat";
 import chalk from "chalk";
 
-import { TOKENS } from "../test/Constants";
 import { CurveFactory, Curve } from "../typechain";
 import { getAccounts, getFastGasPrice } from "./common";
 import { parseUnits } from "@ethersproject/units";
 
 const { ethers } = hre;
 
-const GOVERNANCE = "0x27e843260c71443b4cc8cb6bf226c3f77b9695af";
-
-const ASSIMILATOR_ADDRESSES = {
-  cadcToUsdAssimilator: "0x12310b7726eaE2D2438361Fd126a25D8381Fe891",
-  usdcToUsdAssimilator: "0x3CB209Dc9dDC45ce4Fd9a2f5DD33a8C6A9b6ea52",
-  eursToUsdAssimilator: "0x39F45038D763dd88791cE9BdE8d6c18081c7d522",
-  xsgdToUsdAssimilator: "0xe36DeD0aF2929870977F05A1f017BAB6CF8190f8",
+const TOKENS = {
+  BUSD: "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56",
+  USDT: "0x55d398326f99059fF775485246999027B3197955",
 };
+const ASSIMILATOR_ADDRESSES = {
+  busdToUsdAssimilator: "0x7Eba8752AbB455fa0BFb11ce97a25d420F75cc35",
+  usdtToUsdAssimilator: "0x743C47bfC7F08343FEeD8f2a257e6188E234bC69",
+};
+const CURVE_FACTORY = "0xfC059De87AE9c0F49A95FB22FE108d5f18DCe089";
 
 const ALPHA = parseUnits("0.8");
 const BETA = parseUnits("0.5");
@@ -31,7 +31,7 @@ async function main() {
 
   const curveFactory = (await ethers.getContractAt(
     "CurveFactory",
-    "0xd3C1bF5582b5f3029b15bE04a49C65d3226dFB0C",
+    CURVE_FACTORY,
   )) as CurveFactory;
 
   const createAndSetParams = async (name, symbol, base, quote, baseAssim, quoteAssim) => {
@@ -65,45 +65,28 @@ async function main() {
     });
     console.log("tx hash", tx2.hash);
     await tx2.wait();
-    console.log("params setted, transferring ownership");
+    console.log("params setted");
     gasPrice = await getFastGasPrice();
-    const tx3 = await curve.transferOwnership(GOVERNANCE, {
+    const tx3 = await curve.turnOffWhitelisting({
       gasPrice,
       gasLimit: 300000,
     });
     console.log("tx hash", tx3.hash);
     await tx3.wait();
-    console.log("ownership xferred");
+    console.log("turnOffWhitelisting done");
 
     console.log("==== done ====");
   };
 
   await createAndSetParams(
-    "dfx-cadc-usdc-a",
-    "dfx-cadc-a",
-    TOKENS.CADC.address,
-    TOKENS.USDC.address,
-    ASSIMILATOR_ADDRESSES.cadcToUsdAssimilator,
-    ASSIMILATOR_ADDRESSES.usdcToUsdAssimilator,
+    "ocp-usdt-busd-a",
+    "ocp-usdt-a",
+    TOKENS.USDT,
+    TOKENS.BUSD,
+    ASSIMILATOR_ADDRESSES.usdtToUsdAssimilator,
+    ASSIMILATOR_ADDRESSES.busdToUsdAssimilator,
   );
 
-  await createAndSetParams(
-    "dfx-eurs-usdc-a",
-    "dfx-eurs-a",
-    TOKENS.EURS.address,
-    TOKENS.USDC.address,
-    ASSIMILATOR_ADDRESSES.eursToUsdAssimilator,
-    ASSIMILATOR_ADDRESSES.usdcToUsdAssimilator,
-  );
-
-  await createAndSetParams(
-    "dfx-xsgd-usdc-a",
-    "dfx-xsgd-a",
-    TOKENS.XSGD.address,
-    TOKENS.USDC.address,
-    ASSIMILATOR_ADDRESSES.xsgdToUsdAssimilator,
-    ASSIMILATOR_ADDRESSES.usdcToUsdAssimilator,
-  );
 }
 
 // We recommend this pattern to be able to use async/await everywhere

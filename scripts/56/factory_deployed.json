@@ -1,0 +1,11 @@
+{
+    "libraries": {
+        "Curves": "0x54FaAA07940a1A8b72edbaccbeF1AF4333D48792",
+        "Orchestrator": "0x9ab7D19A8937E46929be6d61F08e493C2C6AbF7E",
+        "ProportionalLiquidity": "0x806E9763712964ceB35D6a5242F067D211D13D41",
+        "Swaps": "0x855998581d531D51b3B3272A8c6459c9cf769Cb6",
+        "ViewLiquidity": "0x919aAc8b5fB26E78FefB7DA065Cee9348dE98de9"
+    },
+    "curveFactory": "0xfC059De87AE9c0F49A95FB22FE108d5f18DCe089",
+    "router": "0xaE8F4984e7Ce0ce605Db7A15F20CF988265936D5"
+}

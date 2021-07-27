@@ -20,7 +20,7 @@ async function main() {
   const ViewLiquidityLib = await ethers.getContractFactory("ViewLiquidity");
 
   const curvesLib = await deployContract({
-    name: "CuvesLib",
+    name: "CurvesLib",
     deployer: user,
     factory: CurvesLib,
     args: [],
@@ -113,8 +113,10 @@ async function main() {
     router: router.address,
   };
 
-  const outputPath = path.join(__dirname, new Date().getTime().toString() + `_factory_deployed.json`);
-  fs.writeFileSync(outputPath, JSON.stringify(output, null, 4));
+  const network = await hre.ethers.provider.getNetwork();
+  const outputDir = path.join(__dirname, `${network.chainId}`);
+  if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir);
+  fs.writeFileSync(path.join(outputDir, `factory_deployed.json`), JSON.stringify(output, null, 4));
 }
 
 // We recommend this pattern to be able to use async/await everywhere

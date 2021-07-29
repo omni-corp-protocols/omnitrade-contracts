@@ -91,13 +91,13 @@ contract EursToUsdAssimilator is IAssimilator {
         // 1e2
         _eursBal = _eursBal.mul(1e18).div(_baseWeight);
 
-        // 1e6
+        // 1e18
         uint256 _usdcBal = usdc.balanceOf(_addr).mul(1e18).div(_quoteWeight);
 
-        // Rate is in 1e6
+        // Rate is in 1e18
         uint256 _rate = _usdcBal.mul(1e2).div(_eursBal);
 
-        amount_ = (_amount.mulu(1e2) * 1e6) / _rate;
+        amount_ = (_amount.mulu(1e2) * 1e18) / _rate;
 
         bool _transferSuccess = eurs.transferFrom(msg.sender, address(this), amount_);
 
@@ -169,13 +169,13 @@ contract EursToUsdAssimilator is IAssimilator {
         // 1e2
         _eursBal = _eursBal.mul(1e18).div(_baseWeight);
 
-        // 1e6
+        // 1e18
         uint256 _usdcBal = usdc.balanceOf(_addr).mul(1e18).div(_quoteWeight);
 
-        // Rate is in 1e6
+        // Rate is in 1e18
         uint256 _rate = _usdcBal.mul(1e2).div(_eursBal);
 
-        amount_ = (_amount.mulu(1e2) * 1e6) / _rate;
+        amount_ = (_amount.mulu(1e2) * 1e18) / _rate;
     }
 
     // takes a raw amount and returns the numeraire amount
@@ -226,9 +226,9 @@ contract EursToUsdAssimilator is IAssimilator {
 
         uint256 _usdcBal = usdc.balanceOf(_addr).mul(1e18).div(_quoteWeight);
 
-        // Rate is in 1e6
+        // Rate is in 1e18
         uint256 _rate = _usdcBal.mul(1e18).div(_eursBal.mul(1e18).div(_baseWeight));
 
-        balance_ = ((_eursBal * _rate) / 1e6).divu(1e18);
+        balance_ = ((_eursBal * _rate) / 1e18).divu(1e18);
     }
 }

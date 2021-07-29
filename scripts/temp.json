@@ -1,14 +1,14 @@
 {
     "libraries": {
-        "Curves": "0xdb36E9C46226df8A76fB31817c56D7aE00ABce94",
-        "Orchestrator": "0x46Fcb3D3f391B37FFa5eD422f271df1F0bafEC7e",
-        "ProportionalLiquidity": "0x5f7776FA41B527c40c9ad58Fde1299071A893f84",
-        "Swaps": "0x14C565Fc1DCAf4D099AA08dbf16f9f957181d284",
-        "ViewLiquidity": "0x311243Dcad1BFf94559C3fDD08E3aba1FA200FFf"
+        "Curves": "0xdbF959F42Fa60b487658f45D985fdB2e17e359E1",
+        "Orchestrator": "0x39eE8759A3e909dd6F26c6b572291A425e872f5B",
+        "ProportionalLiquidity": "0x084a25529B9CB334D44228e6566bcCc244682eed",
+        "Swaps": "0x0e88BbCb4680659027E30a51750f0aA0AA802145",
+        "ViewLiquidity": "0xfC2e587d8C252f57cf638DB6E9A0C7e4D01c23d5"
     },
-    "curveFactory": "0xd6f7BdA9161fA9FECC4606B79883F346927A1C48",
-    "router": "0x193FCf39B26DC289eFd86b57b50C79A8aA435939",
-    "usdcToUsdAssimilator": "0x1300BCc52515CD46A4703894c0A130cFc35f0d62",
-    "eursToUsdAssimilator": "0xC0F3c955F58538E46333164959984E77b729487F",
-    "euroCurve": "0xE53abD789Fec5877369688997fD20E44bB0eabA6"
+    "curveFactory": "0x2c6a2606F4cd3271d04e0ed33df8FBDbd5dea272",
+    "router": "0xC40c296B698c4D86a6682ACb4622fe1271C84401",
+    "usdcToUsdAssimilator": "0x0ebaF84DDC210C68AAc3dA3FFcC885e7d44EFB1f",
+    "eursToUsdAssimilator": "0x1A048f3591484bd590e8B82eefD63B6838976D62",
+    "euroCurve": "0xC85Fab3e131485AEd07D03f242d9032d7F517791"
 }

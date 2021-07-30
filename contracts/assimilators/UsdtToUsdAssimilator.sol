@@ -91,10 +91,10 @@ contract UsdtToUsdAssimilator is IAssimilator {
 
         uint256 _usdcBal = usdc.balanceOf(_addr).mul(1e18).div(_quoteWeight);
 
-        // Rate is in 1e6
+        // Rate is in 1e18
         uint256 _rate = _usdcBal.mul(1e18).div(_cadcBal.mul(1e18).div(_baseWeight));
 
-        amount_ = (_amount.mulu(1e18) * 1e6) / _rate;
+        amount_ = (_amount.mulu(1e18) * 1e18) / _rate;
 
         bool _transferSuccess = cadc.transferFrom(msg.sender, address(this), amount_);
 
@@ -166,10 +166,10 @@ contract UsdtToUsdAssimilator is IAssimilator {
 
         uint256 _usdcBal = usdc.balanceOf(_addr).mul(1e18).div(_quoteWeight);
 
-        // Rate is in 1e6
+        // Rate is in 1e18
         uint256 _rate = _usdcBal.mul(1e18).div(_cadcBal.mul(1e18).div(_baseWeight));
 
-        amount_ = (_amount.mulu(1e18) * 1e6) / _rate;
+        amount_ = (_amount.mulu(1e18) * 1e18) / _rate;
     }
 
     // takes a raw amount and returns the numeraire amount
@@ -220,9 +220,9 @@ contract UsdtToUsdAssimilator is IAssimilator {
 
         uint256 _usdcBal = usdc.balanceOf(_addr).mul(1e18).div(_quoteWeight);
 
-        // Rate is in 1e6
+        // Rate is in 1e18
         uint256 _rate = _usdcBal.mul(1e18).div(_cadcBal.mul(1e18).div(_baseWeight));
 
-        balance_ = ((_cadcBal * _rate) / 1e6).divu(1e18);
+        balance_ = ((_cadcBal * _rate) / 1e18).divu(1e18);
     }
 }

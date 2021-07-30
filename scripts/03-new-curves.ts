@@ -8,14 +8,14 @@ import { parseUnits } from "@ethersproject/units";
 const { ethers } = hre;
 
 const TOKENS = {
+  USDO: "0x5801D0e1C7D977D78E4890880B8E579eb4943276",
   BUSD: "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56",
-  USDT: "0x55d398326f99059fF775485246999027B3197955",
 };
 const ASSIMILATOR_ADDRESSES = {
-  busdToUsdAssimilator: "0x7Eba8752AbB455fa0BFb11ce97a25d420F75cc35",
-  usdtToUsdAssimilator: "0x743C47bfC7F08343FEeD8f2a257e6188E234bC69",
+  usdoToUsdAssimilator: "0x6e7D90feFFdF7E90DaB19CaF213CE64f28D0cE60",
+  busdToUsdAssimilator: "0xd4AABE1A428EA36CB836db2248B4AC68537ed108",
 };
-const CURVE_FACTORY = "0xfC059De87AE9c0F49A95FB22FE108d5f18DCe089";
+const CURVE_FACTORY = "0x00a738971f4aAb40eAB7ff7E6Ff6330007eE663D";
 
 const ALPHA = parseUnits("0.8");
 const BETA = parseUnits("0.5");
@@ -29,10 +29,7 @@ async function main() {
   console.log(chalk.blue(`>>>>>>>>>>>> Network: ${(hre.network.config as any).url} <<<<<<<<<<<<`));
   console.log(chalk.blue(`>>>>>>>>>>>> Deployer: ${user.address} <<<<<<<<<<<<`));
 
-  const curveFactory = (await ethers.getContractAt(
-    "CurveFactory",
-    CURVE_FACTORY,
-  )) as CurveFactory;
+  const curveFactory = (await ethers.getContractAt("CurveFactory", CURVE_FACTORY)) as CurveFactory;
 
   const createAndSetParams = async (name, symbol, base, quote, baseAssim, quoteAssim) => {
     console.log("creating ", name);
@@ -79,14 +76,13 @@ async function main() {
   };
 
   await createAndSetParams(
-    "ocp-usdt-busd-a",
-    "ocp-usdt-a",
-    TOKENS.USDT,
+    "OCP BUSD USDO LP",
+    "OCP LP",
     TOKENS.BUSD,
-    ASSIMILATOR_ADDRESSES.usdtToUsdAssimilator,
+    TOKENS.USDO,
     ASSIMILATOR_ADDRESSES.busdToUsdAssimilator,
+    ASSIMILATOR_ADDRESSES.usdoToUsdAssimilator,
   );
-
 }
 
 // We recommend this pattern to be able to use async/await everywhere

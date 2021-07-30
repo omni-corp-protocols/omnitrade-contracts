@@ -13,13 +13,13 @@ async function main() {
   console.log(chalk.blue(`>>>>>>>>>>>> Network: ${(hre.network.config as any).url} <<<<<<<<<<<<`));
   console.log(chalk.blue(`>>>>>>>>>>>> Deployer: ${user.address} <<<<<<<<<<<<`));
 
-  const UsdtToUsdAssimilator = await ethers.getContractFactory("UsdtToUsdAssimilator");
+  const UsdoToUsdAssimilator = await ethers.getContractFactory("UsdoToUsdAssimilator");
   const BusdToUsdAssimilator = await ethers.getContractFactory("BusdToUsdAssimilator");
 
-  const usdtToUsdAssimilator = await deployContract({
-    name: "UsdtToUsdAssimilator",
+  const usdoToUsdAssimilator = await deployContract({
+    name: "UsdoToUsdAssimilator",
     deployer: user,
-    factory: UsdtToUsdAssimilator,
+    factory: UsdoToUsdAssimilator,
     args: [],
     opts: {
       gasLimit: 2000000,
@@ -37,7 +37,7 @@ async function main() {
   });
 
   const output = {
-    usdtToUsdAssimilator: usdtToUsdAssimilator.address,
+    usdoToUsdAssimilator: usdoToUsdAssimilator.address,
     busdToUsdAssimilator: busdToUsdAssimilator.address,
   };
 

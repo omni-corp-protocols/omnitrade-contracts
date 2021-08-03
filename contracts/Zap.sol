@@ -26,7 +26,7 @@ contract Zap {
     using SafeMath for uint256;
     using SafeERC20 for IERC20;
 
-    IERC20 private constant USDC = IERC20(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48);
+    IERC20 private constant USDC = IERC20(0x5801D0e1C7D977D78E4890880B8E579eb4943276);
 
     struct ZapData {
         address curve;
@@ -290,7 +290,7 @@ contract Zap {
     /// @return uint256 - The max quote amount
     function calcMaxBaseForDeposit(address _curve, uint256 _quoteAmount) public view returns (uint256) {
         (, uint256[] memory outs) = Curve(_curve).viewDeposit(2e18);
-        uint256 baseAmount = outs[0].mul(_quoteAmount).div(1e6);
+        uint256 baseAmount = outs[0].mul(_quoteAmount).div(1e18);
 
         return baseAmount;
     }
@@ -302,8 +302,8 @@ contract Zap {
     function calcMaxQuoteForDeposit(address _curve, uint256 _baseAmount) public view returns (uint256) {
         uint8 curveBaseDecimals = ERC20(Curve(_curve).reserves(0)).decimals();
         (, uint256[] memory outs) = Curve(_curve).viewDeposit(2e18);
-        uint256 ratio = outs[0].mul(10**(36 - curveBaseDecimals)).div(outs[1].mul(1e12));
-        uint256 quoteAmount = _baseAmount.mul(10**(36 - curveBaseDecimals)).div(ratio).div(1e12);
+        uint256 ratio = outs[0].mul(10**(36 - curveBaseDecimals)).div(outs[1]);
+        uint256 quoteAmount = _baseAmount.mul(10**(36 - curveBaseDecimals)).div(ratio);
 
         return quoteAmount;
     }
@@ -334,10 +334,10 @@ contract Zap {
 
             // Update user's ratio
             userRatio = recvAmount.mul(10**(36 - uint256(zapData.curveBaseDecimals))).div(
-                zapData.zapAmount.sub(swapAmount).mul(1e12)
+                zapData.zapAmount.sub(swapAmount)
             );
             curveRatio = zapData.curveBaseBal.sub(recvAmount).mul(10**(36 - uint256(zapData.curveBaseDecimals))).div(
-                zapData.curveQuoteBal.add(swapAmount).mul(1e12)
+                zapData.curveQuoteBal.add(swapAmount)
             );
 
             // If user's ratio is approx curve ratio, then just swap
@@ -385,10 +385,10 @@ contract Zap {
 
             // Update user's ratio
             userRatio = zapData.zapAmount.sub(swapAmount).mul(10**(36 - uint256(zapData.curveBaseDecimals))).div(
-                recvAmount.mul(1e12)
+                recvAmount
             );
             curveRatio = zapData.curveBaseBal.add(swapAmount).mul(10**(36 - uint256(zapData.curveBaseDecimals))).div(
-                zapData.curveQuoteBal.sub(recvAmount).mul(1e12)
+                zapData.curveQuoteBal.sub(recvAmount)
             );
 
             // If user's ratio is approx curve ratio, then just swap
@@ -443,12 +443,12 @@ contract Zap {
         uint8 curveBaseDecimals = ERC20(_base).decimals();
         uint256 curveRatio =
             IERC20(_base).balanceOf(_curve).mul(10**(36 - uint256(curveBaseDecimals))).div(
-                USDC.balanceOf(_curve).mul(1e12)
+                USDC.balanceOf(_curve)
             );
 
         // Deposit amount is denomiated in USD value (based on pool LP ratio)
         // Things are 1:1 on USDC side on deposit
-        uint256 usdcDepositAmount = dd.curQuoteAmount.mul(1e12);
+        uint256 usdcDepositAmount = dd.curQuoteAmount;
 
         // Things will be based on ratio on deposit
         uint256 baseDepositAmount = dd.curBaseAmount.mul(10**(18 - uint256(curveBaseDecimals)));

@@ -9,11 +9,11 @@ const { ethers } = hre;
 
 const TOKENS = {
   USDO: "0x5801D0e1C7D977D78E4890880B8E579eb4943276",
-  BUSD: "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56",
+  CAKE: "0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82",
 };
 const ASSIMILATOR_ADDRESSES = {
   usdoToUsdAssimilator: "0x6e7D90feFFdF7E90DaB19CaF213CE64f28D0cE60",
-  busdToUsdAssimilator: "0xd4AABE1A428EA36CB836db2248B4AC68537ed108",
+  cakeToUsdAssimilator: "0xE3924C1B53Bb8498117A4Af5D47bb92F74a49925",
 };
 const CURVE_FACTORY = "0x00a738971f4aAb40eAB7ff7E6Ff6330007eE663D";
 
@@ -76,11 +76,11 @@ async function main() {
   };
 
   await createAndSetParams(
-    "OCP BUSD USDO LP",
+    "OCP CAKE USDO LP",
     "OCP LP",
-    TOKENS.BUSD,
+    TOKENS.CAKE,
     TOKENS.USDO,
-    ASSIMILATOR_ADDRESSES.busdToUsdAssimilator,
+    ASSIMILATOR_ADDRESSES.cakeToUsdAssimilator,
     ASSIMILATOR_ADDRESSES.usdoToUsdAssimilator,
   );
 }

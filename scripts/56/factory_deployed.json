@@ -1,11 +1,11 @@
 {
-  "libraries": {
-    "Curves": "0x4C88B75e7080f4b046edb8c6AC5305DEb39Bc6b8",
-    "Orchestrator": "0x942F681e53fc2Aa8BeB49D47e95Eb93426339669",
-    "ProportionalLiquidity": "0xc0362732344483B26b6a1e5E7b5Aed1FEAcb325e",
-    "Swaps": "0x2fbaBBf03550Cc04A8BD2E27743e538681D8d7b6",
-    "ViewLiquidity": "0x52B1ac50d54460dDdd391b3e5B8E50D2F2D438Ae"
-  },
-  "curveFactory": "0x00a738971f4aAb40eAB7ff7E6Ff6330007eE663D",
-  "router": "0x18aef1FE9656E363AA77fc96A9dc60C07E9E18b6"
+    "libraries": {
+        "Curves": "0x0BF3A507Dd158021fD67F8e0597e2e01fa04B291",
+        "Orchestrator": "0xCDb60D9c407689a36e95977303cfbd7e727E8B8a",
+        "ProportionalLiquidity": "0xb08CEdc131Ff60D0b8b9Bd7E31F21c6c54afcBe3",
+        "Swaps": "0x5569172D92b9b596653c459E19287d1F1140Fdea",
+        "ViewLiquidity": "0xCF87CD3440182F5BEd7ABbC449BC73A3Ef42c853"
+    },
+    "curveFactory": "0x1802B90aa34513bB5fba56F7C5e0F7a505193630",
+    "router": "0xCA6F340b384644b66628CAfAc22a742f717285Ac"
 }

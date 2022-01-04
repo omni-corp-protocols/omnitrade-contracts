@@ -1,13 +1,12 @@
-# DFX Protocol V0.5
+# OmniTrade Protocol
 
-A decentralized foreign exchange protocol optimized for stablecoins.
+A decentralized exchange protocol optimized for USDO/Token pairs.
 
-[![Discord](https://img.shields.io/discord/786747729376051211.svg?color=768AD4&label=discord&logo=https%3A%2F%2Fdiscordapp.com%2Fassets%2F8c9701b98ad4372b58f13fd9f65f966e.svg)](http://discord.dfx.finance/)
-[![Twitter Follow](https://img.shields.io/twitter/follow/DFXFinance.svg?label=DFXFinance&style=social)](https://twitter.com/DFXFinance)
+[![Twitter Follow](https://img.shields.io/twitter/follow/omnic_pro.svg?label=omnic_pro&style=social)](https://twitter.com/omnic_pro)
 
 ## Overview
 
-DFX v0.5 is a fork of [shellprotocol@48dac1c](https://github.com/cowri/shell-solidity-v1/tree/48dac1c1a18e2da292b0468577b9e6cbdb3786a4), an AMM for baskets of like-valued pairs. An audit of that protocol was previously done by [Consensys Diligence](https://consensys.net/diligence/audits/2020/06/shell-protocol/shell-protocol-audit-2020-06.pdf).
+OmniTrade is a fork of [DFX Protocol@8279479](https://github.com/dfx-finance/protocol/tree/8279479cd16f716a8a306e8f40a42cbf22e08b62) which itself is a fork of [shellprotocol@48dac1c](https://github.com/cowri/shell-solidity-v1/tree/48dac1c1a18e2da292b0468577b9e6cbdb3786a4), an AMM for baskets of like-valued pairs. An audit of that protocol was previously done by [Consensys Diligence](https://consensys.net/diligence/audits/2020/06/shell-protocol/shell-protocol-audit-2020-06.pdf).
 
 There are two major parts to the protocol: **Assimilators** and **Curves** (formerly Shells). Assimilators allow the AMM to handle pairs of different value while also retrieving reported oracle prices for respective currencies. Curves allow the custom parameterization of the bonding curve with dynamic fees, halting bounderies, etc.
 

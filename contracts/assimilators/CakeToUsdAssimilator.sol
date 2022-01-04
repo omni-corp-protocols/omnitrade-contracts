@@ -20,23 +20,25 @@ import "@openzeppelin/contracts/math/SafeMath.sol";
 
 import "../lib/ABDKMath64x64.sol";
 import "../interfaces/IAssimilator.sol";
+import "../interfaces/IOracle.sol";
 
-contract LusdToUsdAssimilator is IAssimilator {
+contract CakeToUsdAssimilator is IAssimilator {
     using ABDKMath64x64 for int128;
     using ABDKMath64x64 for uint256;
 
     using SafeMath for uint256;
 
-    IERC20 private constant cadc = IERC20(0x23e8a70534308a4AAF76fb8C32ec13d17a3BD89e);
+    IOracle private constant oracle = IOracle(0xB6064eD41d4f67e353768aA239cA86f4F73665a1);
+    IERC20 private constant cadc = IERC20(0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82);
 
-    IERC20 private constant usdc = IERC20(0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56);
+    IERC20 private constant usdc = IERC20(0x5801D0e1C7D977D78E4890880B8E579eb4943276);
 
     // solhint-disable-next-line
     constructor() {}
 
-    // solhint-disable-next-line
     function getRate() public view override returns (uint256) {
-        return uint256(100000000);
+        (, int256 price, , , ) = oracle.latestRoundData();
+        return uint256(price);
     }
 
     // takes raw cadc amount, transfers it in, calculates corresponding numeraire amount and returns it

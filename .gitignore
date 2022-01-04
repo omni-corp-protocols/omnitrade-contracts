@@ -119,4 +119,5 @@ cache
 artifacts
 typechain
 
+.DS_Store
 .vscode/

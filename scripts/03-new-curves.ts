@@ -9,13 +9,13 @@ const { ethers } = hre;
 
 const TOKENS = {
   USDO: "0x5801D0e1C7D977D78E4890880B8E579eb4943276",
-  BUSD: "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56",
+  USDC: "0xEA32A96608495e54156Ae48931A7c20f0dcc1a21",
 };
 const ASSIMILATOR_ADDRESSES = {
-  usdoToUsdAssimilator: "0x6e7D90feFFdF7E90DaB19CaF213CE64f28D0cE60",
-  busdToUsdAssimilator: "0xd4AABE1A428EA36CB836db2248B4AC68537ed108",
+  usdoToUsdAssimilator: "0x7a60177C95A6abE226F30cF5ef45Df212856F64b",
+  usdcToUsdAssimilator: "0xFdbce1ca7Bb8d10D30d9BcC2a87d251aEA6bE055",
 };
-const CURVE_FACTORY = "0x00a738971f4aAb40eAB7ff7E6Ff6330007eE663D";
+const CURVE_FACTORY = "0xB4e6F3A23644808451E0f0E8F178dC9733311D07";
 
 const ALPHA = parseUnits("0.8");
 const BETA = parseUnits("0.5");
@@ -44,8 +44,7 @@ async function main() {
       baseAssim,
       quoteAssim,
       {
-        gasPrice,
-        gasLimit: 3300000,
+        gasPrice
       },
     );
     console.log("tx hash", tx.hash);
@@ -57,16 +56,14 @@ async function main() {
     console.log("setting params");
     gasPrice = await getFastGasPrice();
     const tx2 = await curve.setParams(ALPHA, BETA, MAX, EPSILON, LAMBDA, {
-      gasPrice,
-      gasLimit: 300000,
+      gasPrice
     });
     console.log("tx hash", tx2.hash);
     await tx2.wait();
     console.log("params setted");
     gasPrice = await getFastGasPrice();
     const tx3 = await curve.turnOffWhitelisting({
-      gasPrice,
-      gasLimit: 300000,
+      gasPrice
     });
     console.log("tx hash", tx3.hash);
     await tx3.wait();
@@ -76,11 +73,11 @@ async function main() {
   };
 
   await createAndSetParams(
-    "OCP BUSD USDO LP",
+    "OCP USDC USDO LP",
     "OCP LP",
-    TOKENS.BUSD,
+    TOKENS.USDC,
     TOKENS.USDO,
-    ASSIMILATOR_ADDRESSES.busdToUsdAssimilator,
+    ASSIMILATOR_ADDRESSES.usdcToUsdAssimilator,
     ASSIMILATOR_ADDRESSES.usdoToUsdAssimilator,
   );
 }

@@ -26,7 +26,7 @@ contract Zap {
     using SafeMath for uint256;
     using SafeERC20 for IERC20;
 
-    IERC20 private constant USDC = IERC20(0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56);
+    IERC20 private constant USDC = IERC20(0x5801D0e1C7D977D78E4890880B8E579eb4943276);
 
     struct ZapData {
         address curve;

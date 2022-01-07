@@ -21,7 +21,7 @@ async function main() {
     factory: Factory,
     args: [],
     opts: {
-      gasLimit: 3000000,
+      gasLimit: 3000000, //remove for metis chain
     },
   });
 

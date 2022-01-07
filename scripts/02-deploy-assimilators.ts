@@ -14,31 +14,27 @@ async function main() {
   console.log(chalk.blue(`>>>>>>>>>>>> Deployer: ${user.address} <<<<<<<<<<<<`));
 
   const UsdoToUsdAssimilator = await ethers.getContractFactory("UsdoToUsdAssimilator");
-  const BusdToUsdAssimilator = await ethers.getContractFactory("BusdToUsdAssimilator");
+  const MUsdcToUsdAssimilator = await ethers.getContractFactory("MUsdcToUsdAssimilator");
 
   const usdoToUsdAssimilator = await deployContract({
     name: "UsdoToUsdAssimilator",
     deployer: user,
     factory: UsdoToUsdAssimilator,
     args: [],
-    opts: {
-      gasLimit: 2000000,
-    },
+    opts: {},
   });
 
-  const busdToUsdAssimilator = await deployContract({
-    name: "BusdToUsdAssimilator",
+  const mUsdcToUsdAssimilator = await deployContract({
+    name: "MUsdcToUsdAssimilator",
     deployer: user,
-    factory: BusdToUsdAssimilator,
+    factory: MUsdcToUsdAssimilator,
     args: [],
-    opts: {
-      gasLimit: 2000000,
-    },
+    opts: {},
   });
 
   const output = {
     usdoToUsdAssimilator: usdoToUsdAssimilator.address,
-    busdToUsdAssimilator: busdToUsdAssimilator.address,
+    mUsdcToUsdAssimilator: mUsdcToUsdAssimilator.address,
   };
 
   const network = await hre.ethers.provider.getNetwork();
